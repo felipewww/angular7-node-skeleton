@@ -1,0 +1,35 @@
+<div id="menu">
+    <nav>
+        <a [routerLink]="['/']">
+            <i class="fas fa-quote-left"></i>
+            <span>Feed</span>
+        </a>
+        <a [routerLink]="['/wiki']">
+            <i class="fas fa-database"></i>
+            <span>Wiki</span>
+        </a>
+
+        <a [routerLink]="['/courses']">
+            <i class="fas fa-apple-alt"></i>
+            <span>Treinamentos</span>
+        </a>
+
+
+        <a [routerLink]="['/store']">
+            <i class="fas fa-store"></i>
+            <span>Loja</span>
+        </a>
+
+        <a href="javascript:return false;" (click)="isCollapsed = !isCollapsed" [attr.aria-expanded]="true" aria-controls="collapse-group">
+            <i class="fas fa-group"></i>
+            <span>Grupos</span>
+        </a>
+        <div class="submenu">
+            <div id="collapse-group" [ngbCollapse]="isCollapsed">
+                <div><a [routerLink]="['/group']">Natura</a></div>
+                <div><a [routerLink]="['/group']">Bradesco</a></div>
+                <div><a [routerLink]="['/group']">Itau</a></div>
+            </div>
+        </div>
+    </nav>
+</div>

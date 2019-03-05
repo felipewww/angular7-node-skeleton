@@ -1,0 +1,80 @@
+.radar-notify {
+    display: flex;
+    justify-content: space-between;
+    background: #fafafa;
+}
+.radar-container {
+    //height: 100vh;
+    //width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.icon,
+.ring {
+    position: absolute;
+    border-radius: 100%;
+    height: 6px;
+    width: 6px;
+}
+.icon {
+    z-index: 2;
+    &-1 {
+        background: #a3daa1;
+    }
+    &-2 {
+        background: #a1dac1;
+    }
+    &-3 {
+        background: #a1d3da;
+    }
+    &-4 {
+        background: #a1b3da;
+    }
+    &-5 {
+        background: #b0a1da;
+    }
+    &-6 {
+        background: #fb437b;
+    }
+}
+
+.ring {
+    border: 20px solid;
+    animation: pulse infinite 1s linear;
+    transform: scale(0, 0);
+    opacity: 0;
+
+    &-1 {
+        border-color: #bbe4c6;
+    }
+    &-2 {
+        border-color: #bbe4d2;
+    }
+    &-3 {
+        border-color: #bbdfe4;
+    }
+    &-4 {
+        border-color: #bbc8e4;
+    }
+    &-5 {
+        border-color: #c6bbe4;
+    }
+    &-6 {
+        background: #fb437b;
+    }
+}
+
+@keyframes pulse {
+    from {
+        //transform: scale(1, 1);
+        transform: scale(0.2, 0.2);
+        opacity: 0.75;
+    }
+    to {
+        //transform: scale(1.25, 1.25);
+        transform: scale(0.5, 0.5);
+        opacity: 0;
+    }
+}

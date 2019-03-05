@@ -1,0 +1,109 @@
+$hamburger-layer-width         : 20px !default;
+$hamburger-layer-spacing       : 3px !default;
+$hamburger-layer-height        : 2px !default;
+$hamburger-padding-y           : 18px !default;
+@import "../../../../node_modules/hamburgers/_sass/hamburgers/hamburgers";
+/*@import "hamburgers";*/
+
+header {
+    height: var(--header-height);
+    position: fixed;
+    width: 100%;
+    background: #6dddfd;
+    z-index: 2;
+    top: 0;
+}
+
+mat-icon, header i.fas {
+    color: #0000005e;
+    font-size: 24px;
+    /*margin-top: 15px;*/
+}
+
+header i.fas {
+    font-size: 19px;
+    margin-top: 2px;
+}
+
+header .menu-icon {
+    float: left;
+    padding: 18px;
+    height: 60px;
+}
+
+header .menu-icon:hover {
+    cursor: pointer;
+    background: rgba(0,0,0,0.1);
+}
+
+header .hamburger {
+    padding: 20px;
+}
+
+header .profile {
+    margin-left: 53px;
+}
+
+header .profile .photo {
+    width: 50px;
+    height: 50px;
+    background-position: 50%;
+    border-radius: 100px;
+    overflow: hidden;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    margin-top: 5px;
+    float: left;
+    border: 3px solid #fff;
+}
+
+header .profile > span {
+    color: rgba(0, 0, 0, 0.4);
+    margin-left: 15px;
+    display: block;
+    float: left;
+    font-size: 14px;
+    margin-top: 18px;
+}
+
+.logo img {
+    height: 50px;
+    margin-top: 4px;
+    margin-left: 25px;
+}
+
+div#rainbow{
+    background: linear-gradient(270deg, #ff4270, #bdff59, #f200ff, #825bfd, #ff9400);
+    background-size: 250% 250%;
+    -webkit-animation: AnimationName 15s ease infinite;
+    animation: AnimationName 15s ease infinite;
+    height: 3px;
+    position: fixed;
+    top: 60px;
+    z-index: 2;
+    width: 100%;
+}
+
+@-webkit-keyframes AnimationName {
+    0%{background-position:0% 50%}
+    25%{background-position:0% 25%}
+    50%{background-position:100% 50%}
+    75%{background-position:100% 75%}
+    100%{background-position:0% 50%}
+}
+@-moz-keyframes AnimationName {
+    0%{background-position:0% 50%}
+    25%{background-position:0% 25%}
+    50%{background-position:100% 50%}
+    75%{background-position:100% 75%}
+    100%{background-position:0% 50%}
+}
+@keyframes AnimationName {
+    0%{background-position:0% 50%}
+    25%{background-position:0% 25%}
+    50%{background-position:100% 50%}
+    75%{background-position:100% 75%}
+    100%{background-position:0% 50%}
+}
