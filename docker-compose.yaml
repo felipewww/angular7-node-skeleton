@@ -8,9 +8,9 @@ services:
     ports:
       - 4201:4200
     volumes:
-      - ./angular-admin:/ai-store/angular-admin
+      - ./angular-admin:/skeleton-store/angular-admin
     command:
-      - /entrypoints/ai-store/angular-admin/entrypoint.sh
+      - /entrypoints/skeleton-store/angular-admin/entrypoint.sh
     links:
       - gateway
 
@@ -20,18 +20,18 @@ services:
     ports:
       - 4202:4200
     volumes:
-      - ./angular-web:/ai-store/angular-web
+      - ./angular-web:/skeleton-store/angular-web
     command:
-      - /entrypoints/ai-store/angular-web/entrypoint.sh
+      - /entrypoints/skeleton-store/angular-web/entrypoint.sh
     links:
       - gateway
 
   endpoints-main:
     build: ./_Dockerfiles/endpoints-main
     command:
-      - /entrypoints/ai-store/endpoints-main/entrypoint.sh
+      - /entrypoints/skeleton-store/endpoints-main/entrypoint.sh
     volumes:
-      - ./endpoints-main:/ai-store/endpoints-main
+      - ./endpoints-main:/skeleton-store/endpoints-main
     links:
       - db
 
@@ -40,9 +40,9 @@ services:
     ports:
       - 85:85
     command:
-      - /entrypoints/ai-store/gateway/entrypoint.sh
+      - /entrypoints/skeleton-store/gateway/entrypoint.sh
     volumes:
-      - ./gateway:/ai-store/gateway
+      - ./gateway:/skeleton-store/gateway
     links:
       - endpoints-main
 
@@ -52,7 +52,7 @@ services:
     volumes:
       - ./laravel-dbm:/var/www/laravel-dbm
     command:
-      - /entrypoints/ai-store/laravel-dbm/entrypoint.sh
+      - /entrypoints/skeleton-store/laravel-dbm/entrypoint.sh
     links:
       - db
 
@@ -65,4 +65,4 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: example
     ports:
-      - 33061:33061
+      - 3306:3306
