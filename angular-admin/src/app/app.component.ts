@@ -1,6 +1,5 @@
-import {Component, Injectable, ViewChild} from '@angular/core';
+import {Component, Injectable, Output, ViewChild} from '@angular/core';
 import * as jQuery from 'jquery'
-import {AuthenticationService} from "@app/_services/authentication.service";
 import {AuthGuard} from "@app/_guards/auth.guard";
 
 @Component({
@@ -20,18 +19,13 @@ export class AppComponent {
     @ViewChild('sidebarMenu') sidebarMenu;
     @ViewChild('pageWrapper') pageWrapper;
 
-    constructor(auth: AuthenticationService, private authGuard: AuthGuard) {
-      console.log('constructing AppComponent!')
+    @Output('guard') guard: AuthGuard;
+
+    constructor(public authGuard: AuthGuard) {
+
     }
 
     ngOnInit(){
-      console.log('OnInit AppComponent!')
-      console.log(this.authGuard);
-
-      this.authGuard.auth.subscribe(ob => {
-        console.warn('OB!')
-        console.warn(ob);
-      });
 
         jQuery(($) => {
 

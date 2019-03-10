@@ -1,4 +1,4 @@
-<div>
+<div *ngIf="authGuard.LoginGuard.status">
   <!--<nav class="navbar navbar-expand navbar-dark bg-dark" *ngIf="currentUser">-->
   <!--<div class="navbar-nav">-->
   <!--<a class="nav-item nav-link" >Logout</a>-->
@@ -194,6 +194,9 @@
       <div class="container-fluid">
         <div class="row">
           <div class="col-lg-12 col-md-12 col-xl-12">
+            <div>
+              Está logado? {{ loggedIn }}
+            </div>
             <router-outlet></router-outlet>
           </div>
         </div>
@@ -205,6 +208,6 @@
   <!-- page-wrapper -->
 </div>
 
-<!--<div>-->
-  <!--<router-outlet></router-outlet>-->
-<!--</div>-->
+<div *ngIf="!authGuard.LoginGuard.status">
+  <router-outlet></router-outlet>
+</div>

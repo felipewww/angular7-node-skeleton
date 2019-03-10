@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import {AuthGuard, LogginStatus} from "@app/_guards/auth.guard";
+import {AuthGuard} from "@app/_guards/auth.guard";
 import {LoginComponent} from "@app/modules/login/login/login.component";
 import {HomeComponent} from "@app/modules/home/home.component";
 
@@ -40,7 +40,7 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
   providers: [
-    LogginStatus,
+    // LogginStatus,
     AuthGuard
   ],
 })

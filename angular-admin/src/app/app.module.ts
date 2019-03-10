@@ -13,7 +13,7 @@ import { MenuComponent } from './default/menu/menu.component';
 import {FormsModule} from "@angular/forms";
 import {LoginModule} from "@app/modules/login/login.module";
 import {CoreModule} from "@app/core/core.module";
-import {LogginStatus} from "@app/_guards/auth.guard";
+// import {LogginStatus} from "@app/_guards/auth.guard";
 import {HomeComponent} from "@app/modules/home/home.component";
 import {ProductsService} from "@app/_services/products.service";
 import { HttpClientModule } from "@angular/common/http";
@@ -40,9 +40,10 @@ import { HttpClientModule } from "@angular/common/http";
     exports: [
         NgbModule,
         NgbDatepickerModule,
+        FormsModule
     ],
     providers: [
-      LogginStatus,
+      // LogginStatus,
       ProductsService,
     ],
     bootstrap: [ AppComponent ]

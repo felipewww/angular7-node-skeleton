@@ -1,15 +1,25 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Injectable, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
+
+@Injectable()
 export class LoginComponent implements OnInit {
 
-    constructor() { }
+  public username: string;
+  public password: string;
 
-    ngOnInit() {
-    }
+  constructor() { }
 
+  ngOnInit() {
+  }
+
+  public Logar(){
+    console.log(this.username)
+    console.log(this.password)
+    // this.http.post()
+  }
 }
