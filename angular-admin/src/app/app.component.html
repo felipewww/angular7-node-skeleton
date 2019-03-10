@@ -1,4 +1,4 @@
-<div *ngIf="authGuard.TokenGuard.status">
+<div *ngIf="authGuard.isTokenValid">
   <!--<nav class="navbar navbar-expand navbar-dark bg-dark" *ngIf="currentUser">-->
   <!--<div class="navbar-nav">-->
   <!--<a class="nav-item nav-link" >Logout</a>-->
@@ -34,6 +34,7 @@
         </div>
 
         <div class="sidebar-menu">
+
           <ul>
             <li>
               <a [routerLink]="['/']">
@@ -42,16 +43,46 @@
               </a>
             </li>
           </ul>
+
+          <ul *ngFor="let rootModule of accessModules">
+
+            <li class="header-menu">
+              <span>{{ rootModule.name }}</span>
+            </li>
+
+
+            <li *ngFor="let submodule of rootModule.children" class="sidebar-dropdown">
+              <a>
+                <i [className]="submodule.icon"></i>
+                <span>{{ submodule.name }}</span>
+              </a>
+
+              <div class="sidebar-submenu">
+                <ul>
+                  <li *ngFor="let childrenOption of submodule.children">
+                    <a [routerLink]="childrenOption.href">{{childrenOption.name}}</a>
+                  </li>
+                </ul>
+              </div>
+
+            </li>
+
+          </ul>
+
           <ul>
+
             <li class="header-menu">
               <span>Sistema</span>
             </li>
+
+
             <li class="sidebar-dropdown">
               <a href="javascript:;">
                 <i class="fa fa-users"></i>
                 <span>Usuários</span>
                 <!--<span class="badge badge-pill badge-warning">New</span>-->
               </a>
+
               <div class="sidebar-submenu">
                 <ul>
                   <li>
@@ -63,6 +94,8 @@
                 </ul>
               </div>
             </li>
+
+
             <li>
               <a [routerLink]="['/system/permissions']">
                 <i class="fa fa-lock"></i>
@@ -205,6 +238,6 @@
   <!-- page-wrapper -->
 </div>
 
-<div *ngIf="!authGuard.TokenGuard.status">
+<div *ngIf="!authGuard.isTokenValid">
   <router-outlet></router-outlet>
 </div>

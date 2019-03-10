@@ -1,7 +1,8 @@
 import {Component, Injectable, OnInit} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Router} from "@angular/router";
-import {AuthGuard, Session} from "@app/guards/auth.guard";
+import {AuthGuard} from "@app/guards/auth.guard";
+import {Session} from "@app/core/session";
 
 @Component({
   selector: 'app-login',

@@ -1,6 +1,7 @@
 import {Component, Injectable, Output, ViewChild, OnInit} from '@angular/core';
 import * as jQuery from 'jquery'
-import {AuthGuard, Session} from "@app/guards/auth.guard";
+import {AuthGuard} from "@app/guards/auth.guard";
+import {AccessModules, Session} from "@app/core/session";
 
 @Component({
     selector: 'app-root',
@@ -18,6 +19,8 @@ export class AppComponent implements OnInit{
     @ViewChild('pageWrapper') pageWrapper;
 
     @Output('guard') guard: AuthGuard;
+    // @Output('session') session: Session;
+  public accessModules: AccessModules;
 
     constructor(public authGuard: AuthGuard) {
 
@@ -26,38 +29,44 @@ export class AppComponent implements OnInit{
     ngOnInit(){
 
       this.authGuard.Session.$subject.subscribe((session: Session) => this.loginDataChanged(session));
+      // this.jqueryMenu();
+    }
 
+    jqueryMenu(){
       jQuery(($) => {
 
-          $(".sidebar-dropdown > a").click(function() {
-              $(".sidebar-submenu").slideUp(200);
-              if (
-                  $(this)
-                      .parent()
-                      .hasClass("active")
-              ) {
-                  $(".sidebar-dropdown").removeClass("active");
-                  $(this)
-                      .parent()
-                      .removeClass("active");
-              } else {
-                  $(".sidebar-dropdown").removeClass("active");
-                  $(this)
-                      .next(".sidebar-submenu")
-                      .slideDown(200);
-                  $(this)
-                      .parent()
-                      .addClass("active");
-              }
-          });
+        $(".sidebar-dropdown > a").click(function() {
+          $(".sidebar-submenu").slideUp(200);
+          if (
+            $(this)
+              .parent()
+              .hasClass("active")
+          ) {
+            $(".sidebar-dropdown").removeClass("active");
+            $(this)
+              .parent()
+              .removeClass("active");
+          } else {
+            $(".sidebar-dropdown").removeClass("active");
+            $(this)
+              .next(".sidebar-submenu")
+              .slideDown(200);
+            $(this)
+              .parent()
+              .addClass("active");
+          }
+        });
 
       });
     }
 
     loginDataChanged(session: Session){
       if (session.status) {
-        console.log('Logado corretamente!')
-        console.log(session);
+        this.accessModules = session.user.accessModules;
+        // console.log('from loginDataChanged')
+        // console.log(this.accessModules)
+
+        setTimeout(() => {this.jqueryMenu();}, 200)
       }
     }
 

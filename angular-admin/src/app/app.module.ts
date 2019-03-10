@@ -14,9 +14,8 @@ import {FormsModule} from "@angular/forms";
 import {LoginModule} from "@app/modules/login/login.module";
 import {CoreModule} from "@app/core/core.module";
 import {HomeComponent} from "@app/modules/home/home.component";
-import {ProductsService} from "@app/services/products.service";
 import { HttpClientModule } from "@angular/common/http";
-import {TokenGuard, Session} from "@app/guards/auth.guard";
+import {Session} from "@app/core/session";
 
 
 @NgModule({
@@ -43,10 +42,7 @@ import {TokenGuard, Session} from "@app/guards/auth.guard";
         FormsModule
     ],
     providers: [
-      // LogginStatus,
-      TokenGuard,
       Session,
-      ProductsService,
     ],
     bootstrap: [ AppComponent ]
 })
