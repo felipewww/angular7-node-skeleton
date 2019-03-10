@@ -33,19 +33,17 @@ export default class Routes {
             .post((req, res, next) => {
 
                 let decoded = Cryptor.validateToken(req.headers.authorization);
-                // let decoded = Cryptor.validateToken('req.headers.authorization');
 
                 res.statusCode = ( decoded.status ) ? 200 : 403;
 
                 next({
-                    status: false
+                    status: decoded.status
                 });
             });
 
         authRouter.route('/login')
             .post((req, res, next) => {
-                // console.log(req.body);
-                // console.log(req.headers);
+
                 let username = req.body.username;
                 let password = req.body.password;
 
@@ -70,39 +68,12 @@ export default class Routes {
 
                 res.statusCode = 200;
                 next({
-                    status: 200,
+                    status: true,
                     token: token,
                     _session: {
                         user: user
                     }
                 });
             })
-        // authRouter.route('/user')
-        //     .post(async function (req, res, next) {
-        //         let responser = await new UserController().login(req.body);
-        //         res.statusCode = responser.status;
-        //
-        //         next(responser.getResponse());
-        //     })
-        //     .put(async function (req, res, next) {
-        //         let responser = await new UserController().register(req.body);
-        //         res.statusCode = responser.status;
-        //
-        //         next(responser.getResponse());
-        //     });
-        //
-        // authRouter.route('/family')
-        //     .post(async function (req, res, next) {
-        //         let responser = await new FamilyController().login(req.body);
-        //         res.statusCode = responser.status;
-        //
-        //         next(responser.getResponse());
-        //     })
-        //     .put(async function (req, res, next) {
-        //         let responser = await new FamilyController().register(req.body);
-        //         res.statusCode = responser.status;
-        //
-        //         next(responser.getResponse());
-        //     });
     }
 }

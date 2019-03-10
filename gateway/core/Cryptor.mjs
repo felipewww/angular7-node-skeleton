@@ -119,15 +119,8 @@ export default class Cryptor {
 
         try{
             res.token = jwt.verify(token, process.env.APP_SECRET_HASH);
-            // let decodedIDS = Cryptor.decrypt(decoded.data);
-
-            // res.userId = decodedIDS[0];
-            // res.familyId = decodedIDS[1];
-
         } catch (e) {
-            // res.error = e;
             res.status = false;
-            // res.error = 1000;
         }
 
         return res;

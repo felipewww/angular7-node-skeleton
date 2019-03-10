@@ -22,18 +22,25 @@ export class AuthGuard implements CanActivate {
 
     public async canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
 
-      console.warn('canActive');
-      await this.authenticationService.auth()
-        .toPromise()
-        .then((res: LoginGuard) => {
-          console.warn('then!');
-          this.LoginGuard = res;
-        });
+      let session = JSON.parse(localStorage.getItem('_session'));
+      console.warn('SESSION!');
+      console.warn(session);
 
-      if (!this.LoginGuard.status) {
+      if (!session) {
         this.router.navigateByUrl('/login');
         return false;
       }
+
+      await this.authenticationService.auth(session.token)
+        .toPromise()
+        .then((res: LoginGuard) => {
+          this.LoginGuard = res;
+        })
+        .catch(reject => {
+          console.warn('rejected!')
+          console.log(reject)
+          this.router.navigateByUrl('/login');
+        });
 
       return true;
     }

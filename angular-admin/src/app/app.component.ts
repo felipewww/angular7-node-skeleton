@@ -13,8 +13,6 @@ import {AuthGuard} from "@app/_guards/auth.guard";
 @Injectable()
 export class AppComponent {
 
-    loggedIn: boolean = false;
-
     @ViewChild('pageContent') pageContent;
     @ViewChild('sidebarMenu') sidebarMenu;
     @ViewChild('pageWrapper') pageWrapper;
