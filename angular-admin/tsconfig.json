@@ -19,10 +19,12 @@
     ],
       "paths": {
           "@app/*": ["app/*"],
-          "@config/*": ["app/_config/*"],
+          "@config/*": ["app/config/*"],
           "@environment/*": ["environments/*"],
-          "@shared/*": ["app/_shared/*"],
-          "@helpers/*": ["helpers/*"]
+          "@shared/*": ["app/shared/*"],
+          "@helpers/*": ["helpers/*"],
+          "@models/*": ["models/*"],
+          "@guards/*": ["guards/*"]
       }
   }
 }

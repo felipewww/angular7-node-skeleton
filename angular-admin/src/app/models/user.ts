@@ -1,4 +1,4 @@
-import {Model} from "@app/_models/_Model";
+import {Model} from "@app/models/_Model";
 
 export class User extends Model{
     id: number;

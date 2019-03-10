@@ -1,4 +1,4 @@
-<div *ngIf="authGuard.LoginGuard.status">
+<div *ngIf="authGuard.TokenGuard.status">
   <!--<nav class="navbar navbar-expand navbar-dark bg-dark" *ngIf="currentUser">-->
   <!--<div class="navbar-nav">-->
   <!--<a class="nav-item nav-link" >Logout</a>-->
@@ -120,7 +120,7 @@
             <li class="sidebar-dropdown">
               <a href="javascript:;">
                 <i class="fa fa-shopping-cart"></i>
-                <span>E-commerce</span>
+                <span>Vendas</span>
                 <!--<span class="badge badge-pill badge-danger">3</span>-->
               </a>
               <div class="sidebar-submenu">
@@ -205,6 +205,6 @@
   <!-- page-wrapper -->
 </div>
 
-<div *ngIf="!authGuard.LoginGuard.status">
+<div *ngIf="!authGuard.TokenGuard.status">
   <router-outlet></router-outlet>
 </div>

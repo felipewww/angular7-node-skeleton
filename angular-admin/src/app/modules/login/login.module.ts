@@ -17,7 +17,7 @@ const ROUTES: Routes = [
     RouterModule.forChild(ROUTES),
     FormsModule
   ],
-    bootstrap: [LoginComponent]
+  bootstrap: [LoginComponent]
 })
 
 export class LoginModule {

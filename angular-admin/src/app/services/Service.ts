@@ -1,8 +1,6 @@
-import {ConnectionBackend, Headers, Http, Response} from '@angular/http';
-// import {Model} from '@models/';
+import {Response} from '@angular/http';
 import {environment} from '@environment/environment';
-import {Injectable} from '@angular/core';
-import {Model} from "@app/_models/_Model";
+import {Model} from "@app/models/_Model";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 
 const httpOptions = {

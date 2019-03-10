@@ -1,13 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { User } from '@app/_models/user';
+import { User } from '@app/models/user';
 import {environment} from "@environment/environment";
-// import {environment} from "@/environments/environment";
 
 @Injectable({ providedIn: 'root' })
 export class UserService {
-
-    public loggedInUS: boolean = true;
 
     constructor(private http: HttpClient) { }
 

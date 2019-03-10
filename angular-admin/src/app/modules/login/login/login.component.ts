@@ -1,12 +1,7 @@
 import {Component, Injectable, OnInit} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Router} from "@angular/router";
-
-interface LoginResponse {
-  status: boolean;
-  token: string;
-  _session: string;
-}
+import {AuthGuard, Session} from "@app/guards/auth.guard";
 
 @Component({
   selector: 'app-login',
@@ -23,28 +18,28 @@ export class LoginComponent implements OnInit {
   constructor(
     protected http: HttpClient,
     private router: Router,
+    public authGuard: AuthGuard
   ){
 
   }
 
   ngOnInit() {
-    localStorage.removeItem('_session');
+    localStorage.removeItem('session');
   }
 
   public Logar(){
 
-    console.log(this.username)
-    console.log(this.password)
-
     let login = this.http.post('/api/auth/login', {
       username: this.username,
       password: this.password
-    }).subscribe((res: LoginResponse) => {
-      console.log(res);
+    }).subscribe((res: Session) => {
 
       if ( res.status ) {
-        localStorage.setItem('_session', JSON.stringify(res))
+
+        localStorage.setItem('session', JSON.stringify(res))
+        this.authGuard.Session.$subject.next(res);
         this.router.navigateByUrl('/');
+
       } else {
         alert("Login error!");
       }

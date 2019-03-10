@@ -1,6 +1,6 @@
-import {Component, Injectable, Output, ViewChild} from '@angular/core';
+import {Component, Injectable, Output, ViewChild, OnInit} from '@angular/core';
 import * as jQuery from 'jquery'
-import {AuthGuard} from "@app/_guards/auth.guard";
+import {AuthGuard, Session} from "@app/guards/auth.guard";
 
 @Component({
     selector: 'app-root',
@@ -11,7 +11,7 @@ import {AuthGuard} from "@app/_guards/auth.guard";
 })
 
 @Injectable()
-export class AppComponent {
+export class AppComponent implements OnInit{
 
     @ViewChild('pageContent') pageContent;
     @ViewChild('sidebarMenu') sidebarMenu;
@@ -25,31 +25,40 @@ export class AppComponent {
 
     ngOnInit(){
 
-        jQuery(($) => {
+      this.authGuard.Session.$subject.subscribe((session: Session) => this.loginDataChanged(session));
 
-            $(".sidebar-dropdown > a").click(function() {
-                $(".sidebar-submenu").slideUp(200);
-                if (
-                    $(this)
-                        .parent()
-                        .hasClass("active")
-                ) {
-                    $(".sidebar-dropdown").removeClass("active");
-                    $(this)
-                        .parent()
-                        .removeClass("active");
-                } else {
-                    $(".sidebar-dropdown").removeClass("active");
-                    $(this)
-                        .next(".sidebar-submenu")
-                        .slideDown(200);
-                    $(this)
-                        .parent()
-                        .addClass("active");
-                }
-            });
+      jQuery(($) => {
 
-        });
+          $(".sidebar-dropdown > a").click(function() {
+              $(".sidebar-submenu").slideUp(200);
+              if (
+                  $(this)
+                      .parent()
+                      .hasClass("active")
+              ) {
+                  $(".sidebar-dropdown").removeClass("active");
+                  $(this)
+                      .parent()
+                      .removeClass("active");
+              } else {
+                  $(".sidebar-dropdown").removeClass("active");
+                  $(this)
+                      .next(".sidebar-submenu")
+                      .slideDown(200);
+                  $(this)
+                      .parent()
+                      .addClass("active");
+              }
+          });
+
+      });
+    }
+
+    loginDataChanged(session: Session){
+      if (session.status) {
+        console.log('Logado corretamente!')
+        console.log(session);
+      }
     }
 
     toggleSidebar(){
