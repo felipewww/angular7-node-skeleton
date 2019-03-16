@@ -14,63 +14,56 @@ import {AccessModules, Session} from "@app/core/session";
 @Injectable()
 export class AppComponent implements OnInit{
 
-    @ViewChild('pageContent') pageContent;
-    @ViewChild('sidebarMenu') sidebarMenu;
-    @ViewChild('pageWrapper') pageWrapper;
+  @ViewChild('pageContent') pageContent;
+  @ViewChild('sidebarMenu') sidebarMenu;
+  @ViewChild('pageWrapper') pageWrapper;
 
-    @Output('guard') guard: AuthGuard;
-    // @Output('session') session: Session;
   public accessModules: AccessModules;
 
-    constructor(public authGuard: AuthGuard) {
+  constructor(public authGuard: AuthGuard) {
 
-    }
+  }
 
-    ngOnInit(){
+  ngOnInit(){
+    this.authGuard.Session.$subject.subscribe((session: Session) => this.loginDataChanged(session));
+  }
 
-      this.authGuard.Session.$subject.subscribe((session: Session) => this.loginDataChanged(session));
-      // this.jqueryMenu();
-    }
+  jqueryMenu(){
+    jQuery(($) => {
 
-    jqueryMenu(){
-      jQuery(($) => {
-
-        $(".sidebar-dropdown > a").click(function() {
-          $(".sidebar-submenu").slideUp(200);
-          if (
-            $(this)
-              .parent()
-              .hasClass("active")
-          ) {
-            $(".sidebar-dropdown").removeClass("active");
-            $(this)
-              .parent()
-              .removeClass("active");
-          } else {
-            $(".sidebar-dropdown").removeClass("active");
-            $(this)
-              .next(".sidebar-submenu")
-              .slideDown(200);
-            $(this)
-              .parent()
-              .addClass("active");
-          }
-        });
-
+      $(".sidebar-dropdown > a").click(function() {
+        $(".sidebar-submenu").slideUp(200);
+        if (
+          $(this)
+            .parent()
+            .hasClass("active")
+        ) {
+          $(".sidebar-dropdown").removeClass("active");
+          $(this)
+            .parent()
+            .removeClass("active");
+        } else {
+          $(".sidebar-dropdown").removeClass("active");
+          $(this)
+            .next(".sidebar-submenu")
+            .slideDown(200);
+          $(this)
+            .parent()
+            .addClass("active");
+        }
       });
-    }
 
-    loginDataChanged(session: Session){
-      if (session.status) {
-        this.accessModules = session.user.accessModules;
-        // console.log('from loginDataChanged')
-        // console.log(this.accessModules)
+    });
+  }
 
-        setTimeout(() => {this.jqueryMenu();}, 200)
-      }
+  loginDataChanged(session: Session){
+    if (session.status) {
+      this.accessModules = session.user.accessModules;
+      setTimeout(() => {this.jqueryMenu();}, 200)
     }
+  }
 
-    toggleSidebar(){
-        this.pageWrapper.nativeElement.classList.toggle('toggled');
-    }
+  toggleSidebar(){
+      this.pageWrapper.nativeElement.classList.toggle('toggled');
+  }
 }

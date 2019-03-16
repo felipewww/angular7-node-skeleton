@@ -22,7 +22,7 @@ const routes: Routes = [
     {
         path: 'app/users/create',
         loadChildren: './modules/users/users-form-module/users-form-module.module#UsersFormModule',
-        canActivate: [AuthGuard]
+        canActivate: [AuthGuard],
     },
     // {
     //     path: 'app/users',

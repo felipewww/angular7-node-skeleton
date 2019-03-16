@@ -6,6 +6,7 @@ import {CoreModule} from '../../core/core.module';
 import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
 import {ModalBasicsComponent} from "../../modal-basics/modal-basics.component";
 import {NgbdTableSortable} from "../../ngbd-table-sortable/ngbd-table-sortable.component";
+import {Session} from "@app/core/session";
 
 const ROUTES: Routes = [
     { path: '', component: HomeComponent }
@@ -27,7 +28,7 @@ const ROUTES: Routes = [
 
     ],
     providers: [
-
+      // Session
     ],
 })
 export class HomeModule {
