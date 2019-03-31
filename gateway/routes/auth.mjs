@@ -54,50 +54,50 @@ export default class Routes {
                     name: 'Felipe',
                     lastname: 'B.',
                     role: 'admin', //admin vê tudo, mas pode depender de rules, seller não verá
-                    rules: {
-                        system: {
-                            users: {
-                                allowDeleteSystemUser: { id: 1, description: 'Permite deletar um usuário'},
-                                allowDeactivateSystemUser: { id: 2, description: 'Permite inativar um usuário'},
-                            }
-                        },
+                    // rules: {
+                    //     system: {
+                    //         users: {
+                    //             allowDeleteSystemUser: { id: 1, description: 'Permite deletar um usuário'},
+                    //             allowDeactivateSystemUser: { id: 2, description: 'Permite inativar um usuário'},
+                    //         }
+                    //     },
+                    //
+                    //     store: {
+                    //         sales: {
+                    //             invoices: {
+                    //                 allowView: { id: 5, description: 'Permite a visuaização de pedidos'},
+                    //             },
+                    //             quotes: {
+                    //                 allowView: { id: 5, description: 'Permite a visuaização de orçamentos'},
+                    //             }
+                    //         },
+                    //         reports: {
+                    //             allowView: { id: 3, description: 'Permite a visuaização de relatórios'},
+                    //             allowGenerateExcel: { id: 4, description: 'Permite gerar um excel dos relatórios'},
+                    //         }
+                    //     },
+                    // },
 
-                        store: {
-                            sales: {
-                                invoices: {
-                                    allowView: { id: 5, description: 'Permite a visuaização de pedidos'},
-                                },
-                                quotes: {
-                                    allowView: { id: 5, description: 'Permite a visuaização de orçamentos'},
-                                }
-                            },
-                            reports: {
-                                allowView: { id: 3, description: 'Permite a visuaização de relatórios'},
-                                allowGenerateExcel: { id: 4, description: 'Permite gerar um excel dos relatórios'},
-                            }
-                        },
-                    },
-
-                    accessModules:
-                    [
-                        {
-                            moduleName: 'system',
-                            name: 'Sistema',
-                            href: '#',
-                            children: [
-                                {
-                                    moduleName: 'users',
-                                    name: 'Usuários',
-                                    icon: 'fa fa-users',
-                                    href: '#',
-                                    children: [
-                                        { moduleName: 'allUsers', name: 'Todos os usuários', href: '/app/users' },
-                                        { moduleName: 'createUser', name: 'Criar', href: '/app/users/create', },
-                                    ]
-                                }
-                            ]
-                        },
-                    ]
+                    // accessModules:
+                    // [
+                    //     {
+                    //         moduleName: 'system',
+                    //         name: 'Sistema',
+                    //         href: '#',
+                    //         children: [
+                    //             {
+                    //                 moduleName: 'users',
+                    //                 name: 'Usuários',
+                    //                 icon: 'fa fa-users',
+                    //                 href: '#',
+                    //                 children: [
+                    //                     { moduleName: 'allUsers', name: 'Todos os usuários', href: '/app/users' },
+                    //                     { moduleName: 'createUser', name: 'Criar', href: '/app/users/create', },
+                    //                 ]
+                    //             }
+                    //         ]
+                    //     },
+                    // ]
 
                         //     {
                         //     users: {
@@ -108,16 +108,23 @@ export default class Routes {
                         // }
 
                 };
+                console.log('token');
 
-                let token = Cryptor.generateADMToken(user);
-
+                let token;
+                let status = true;
                 res.statusCode = 200;
+
+                try{
+                    token = Cryptor.generateADMToken(user);
+                } catch (e) {
+                    res.statusCode = 500;
+                    status = false;
+                    console.log(e);
+                }
+
                 next({
-                    status: true,
+                    status: status,
                     token: token,
-                    // session: {
-                    //     user: user
-                    // }
                     user: user
                 });
             })

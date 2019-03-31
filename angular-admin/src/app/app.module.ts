@@ -10,12 +10,12 @@ import 'hammerjs';
 
 import { HeaderComponent } from './default/header/header.component';
 import { MenuComponent } from './default/menu/menu.component';
-import {FormsModule} from "@angular/forms";
-import {LoginModule} from "@app/modules/login/login.module";
-import {CoreModule} from "@app/core/core.module";
-import {HomeComponent} from "@app/modules/home/home.component";
-import { HttpClientModule } from "@angular/common/http";
-import {Session} from "@app/core/session";
+import {FormsModule} from '@angular/forms';
+import {LoginModule} from '@app/modules/login/login.module';
+import {CoreModule} from '@app/core/core.module';
+import {HomeComponent} from '@app/modules/home/home.component';
+import { HttpClientModule } from '@angular/common/http';
+import {Session} from '@app/core/session';
 
 
 @NgModule({
@@ -23,7 +23,7 @@ import {Session} from "@app/core/session";
         AppComponent,
         HeaderComponent,
         MenuComponent,
-        HomeComponent
+        // HomeComponent
     ],
     imports: [
         FormsModule,

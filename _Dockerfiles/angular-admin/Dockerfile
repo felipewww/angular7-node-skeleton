@@ -2,7 +2,7 @@ FROM node:9
 
 WORKDIR /skeleton-store/angular-admin
 
-RUN apt-get update && apt-get install nano -y
+#RUN apt-get update && apt-get install nano -y
 
 RUN npm install -g @angular/cli
 

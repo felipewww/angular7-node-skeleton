@@ -31,30 +31,30 @@
             </li>
           </ul>
 
-          <ul *ngFor="let rootModule of accessModules">
+<!--          <ul *ngFor="let rootModule of accessModules">-->
 
-            <li class="header-menu">
-              <span>{{ rootModule.name }}</span>
-            </li>
+<!--            <li class="header-menu">-->
+<!--              <span>{{ rootModule.name }}</span>-->
+<!--            </li>-->
 
 
-            <li *ngFor="let submodule of rootModule.children" class="sidebar-dropdown">
-              <a>
-                <i [className]="submodule.icon"></i>
-                <span>{{ submodule.name }}</span>
-              </a>
+<!--            <li *ngFor="let submodule of rootModule.children" class="sidebar-dropdown">-->
+<!--              <a>-->
+<!--                <i [className]="submodule.icon"></i>-->
+<!--                <span>{{ submodule.name }}</span>-->
+<!--              </a>-->
 
-              <div class="sidebar-submenu">
-                <ul>
-                  <li *ngFor="let childrenOption of submodule.children">
-                    <a [routerLink]="childrenOption.href">{{childrenOption.name}}</a>
-                  </li>
-                </ul>
-              </div>
+<!--              <div class="sidebar-submenu">-->
+<!--                <ul>-->
+<!--                  <li *ngFor="let childrenOption of submodule.children">-->
+<!--                    <a [routerLink]="childrenOption.href">{{childrenOption.name}}</a>-->
+<!--                  </li>-->
+<!--                </ul>-->
+<!--              </div>-->
 
-            </li>
+<!--            </li>-->
 
-          </ul>
+<!--          </ul>-->
 
           <ul>
 

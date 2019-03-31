@@ -14,7 +14,7 @@ export class HomeComponent implements OnInit {
 
     @Input('content') modal: ModalBasicsComponent;
 
-    constructor(public Session: Session){
+    constructor(public session: Session) {
 
     }
 

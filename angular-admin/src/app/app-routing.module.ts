@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import {AuthGuard} from "@app/guards/auth.guard";
-import {HomeComponent} from "@app/modules/home/home.component";
+import {AuthGuard} from '@app/guards/auth.guard';
+import {HomeComponent} from '@app/modules/home/home.component';
 
 const routes: Routes = [
     {
@@ -11,7 +11,8 @@ const routes: Routes = [
     },
     {
         path: '',
-        component: HomeComponent,
+        // component: HomeComponent,
+        loadChildren: './modules/home/home.module#HomeModule',
         canActivate: [AuthGuard]
     },
     // {
@@ -20,15 +21,15 @@ const routes: Routes = [
     //     canActivate: [AuthGuard]
     // },
     {
-        path: 'app/users/create',
+        path: 'system/users/create',
         loadChildren: './modules/users/users-form-module/users-form-module.module#UsersFormModule',
         canActivate: [AuthGuard],
     },
-    // {
-    //     path: 'app/users',
-    //     loadChildren: './modules/users/users-list-module/users-list-module.module#UsersListModule',
-    //     canActivate: [AuthGuard]
-    // },
+    {
+        path: 'system/users',
+        loadChildren: './modules/users/users-list-module/users-list-module.module#UsersListModule',
+        canActivate: [AuthGuard]
+    },
 
     // { path: 'wiki', loadChildren: './modules/wiki/wiki.module#WikiModule' },
     // { path: 'courses', loadChildren: './modules/courses/courses.module#CoursesModule' },

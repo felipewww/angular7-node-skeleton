@@ -106,6 +106,7 @@ export default class Cryptor {
 
     static generateADMToken(user)
     {
+        console.log('secret has is '+process.env.APP_SECRET_HASH);
         return jwt.sign({
             data: { uid: user.id, type: user.type }
         }, process.env.APP_SECRET_HASH);
